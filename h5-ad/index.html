@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#ed1c24" />
+    <title>娃哈哈AD钙奶｜不管几岁 快乐万岁</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app" id="app">
+      <div class="ambient ambient-one"></div>
+      <div class="ambient ambient-two"></div>
+      <div class="sticker-rain" id="stickerRain" aria-hidden="true"></div>
+
+      <header class="topbar" aria-label="页面进度">
+        <div class="brand-mark">
+          <span>娃哈哈</span>
+          <strong>AD钙奶</strong>
+        </div>
+        <div class="page-dots" id="pageDots"></div>
+      </header>
+
+      <main>
+        <section class="screen is-active hero-screen" data-screen="0">
+          <div class="hero-copy">
+            <p class="eyebrow">AD钙奶30周年互动H5</p>
+            <h1>不管几岁<br />快乐万岁</h1>
+            <p class="lead">进入「快乐补给站」，测出你的AD快乐人格，领取一张专属酸甜卡。</p>
+          </div>
+
+          <div class="marquee" aria-hidden="true">
+            <div>
+              <span>酸酸甜甜</span>
+              <span>童心上线</span>
+              <span>30周年快乐补给</span>
+              <span>懂你可可爱爱</span>
+            </div>
+          </div>
+
+          <div class="hero-stage" aria-hidden="true">
+            <div class="burst-ring"></div>
+            <img class="hero-bottle bottle-main" src="./assets/ad-original.webp" alt="" />
+            <img class="hero-bottle bottle-side bottle-left" src="./assets/ad-strawberry.webp" alt="" />
+            <img class="hero-bottle bottle-side bottle-right" src="./assets/ad-peach.webp" alt="" />
+            <span class="float-tag tag-red">酸酸甜甜</span>
+            <span class="float-tag tag-blue">童心补给</span>
+            <span class="float-tag tag-yellow">30th</span>
+          </div>
+
+          <div class="memory-wall" aria-label="快乐记忆关键词">
+            <span>小卖部</span>
+            <span>下课铃</span>
+            <span>放学路</span>
+            <span>冰箱第一排</span>
+          </div>
+
+          <button class="primary-btn" type="button" data-next>开启快乐补给</button>
+        </section>
+
+        <section class="screen" data-screen="1">
+          <div class="screen-head">
+            <p class="eyebrow">STEP 01</p>
+            <h2>今天的你，几岁快乐？</h2>
+            <p>选择一个最像你的状态，让AD钙奶读懂你的童心坐标。</p>
+          </div>
+          <div class="choice-grid" data-choice-group="role">
+            <button class="choice-card" type="button" data-value="kid">
+              <span class="choice-emoji">🧃</span>
+              <strong>5岁糖纸收藏家</strong>
+              <small>看到小卖部就自动开心</small>
+            </button>
+            <button class="choice-card" type="button" data-value="teen">
+              <span class="choice-emoji">🏃</span>
+              <strong>16岁操场追风者</strong>
+              <small>下课铃一响就满格回血</small>
+            </button>
+            <button class="choice-card" type="button" data-value="student">
+              <span class="choice-emoji">📚</span>
+              <strong>22岁DDL冲刺员</strong>
+              <small>需要一口酸甜重启大脑</small>
+            </button>
+            <button class="choice-card" type="button" data-value="grown">
+              <span class="choice-emoji">🌈</span>
+              <strong>30+岁生活玩家</strong>
+              <small>把忙碌日常过成小游戏</small>
+            </button>
+          </div>
+          <div class="live-card" id="rolePreview">
+            <span>点击身份卡</span>
+            <strong>解锁你的童心频率</strong>
+          </div>
+          <button class="primary-btn is-disabled" type="button" data-next disabled>下一步</button>
+        </section>
+
+        <section class="screen" data-screen="2">
+          <div class="screen-head">
+            <p class="eyebrow">STEP 02</p>
+            <h2>此刻你想补哪种快乐？</h2>
+            <p>点击一种心情，AD快乐雷达会帮你匹配酸甜能量。</p>
+          </div>
+          <div class="radar-card">
+            <div class="radar-face" id="radarFace">
+              <span>AD</span>
+            </div>
+            <div>
+              <small>快乐雷达</small>
+              <strong id="radarText">等待接收你的心情信号</strong>
+            </div>
+          </div>
+          <div class="mood-list" data-choice-group="mood">
+            <button class="mood-pill" type="button" data-value="recharge">
+              <span>🔋</span><strong>回血一点</strong><small>累了，但还想可爱</small>
+            </button>
+            <button class="mood-pill" type="button" data-value="spark">
+              <span>✨</span><strong>闪亮一点</strong><small>今天想成为人群小太阳</small>
+            </button>
+            <button class="mood-pill" type="button" data-value="soft">
+              <span>🍑</span><strong>温柔一点</strong><small>需要被酸甜轻轻抱住</small>
+            </button>
+            <button class="mood-pill" type="button" data-value="brave">
+              <span>🚀</span><strong>勇敢一点</strong><small>给自己一次出发按钮</small>
+            </button>
+          </div>
+          <button class="primary-btn is-disabled" type="button" data-next disabled>匹配口味</button>
+        </section>
+
+        <section class="screen flavor-screen" data-screen="3">
+          <div class="screen-head">
+            <p class="eyebrow">STEP 03</p>
+            <h2>选一瓶你的今日AD搭子</h2>
+            <p>左右浏览，点中它，让快乐有具体口味。</p>
+          </div>
+          <div class="flavor-spotlight" id="flavorSpotlight">
+            <img id="spotlightImage" src="./assets/ad-original.webp" alt="" />
+            <div>
+              <small>今日推荐</small>
+              <strong id="spotlightTitle">先选一瓶AD钙奶</strong>
+              <p id="spotlightDesc">被选中的口味会点亮你的快乐卡。</p>
+            </div>
+          </div>
+          <div class="flavor-strip" data-choice-group="flavor" aria-label="口味选择">
+            <button class="flavor-card" type="button" data-value="original">
+              <img src="./assets/ad-original.webp" alt="原味AD钙奶" />
+              <strong>原味</strong>
+              <small>经典童年回忆杀</small>
+            </button>
+            <button class="flavor-card" type="button" data-value="strawberry">
+              <img src="./assets/ad-strawberry.webp" alt="草莓味AD钙奶" />
+              <strong>草莓味</strong>
+              <small>可爱暴击补给</small>
+            </button>
+            <button class="flavor-card" type="button" data-value="peach">
+              <img src="./assets/ad-peach.webp" alt="蜜桃味AD钙奶" />
+              <strong>蜜桃味</strong>
+              <small>温柔粉色滤镜</small>
+            </button>
+            <button class="flavor-card" type="button" data-value="lactobacillus">
+              <img src="./assets/ad-lactobacillus.webp" alt="乳酸菌AD钙奶" />
+              <strong>乳酸菌</strong>
+              <small>元气轻盈模式</small>
+            </button>
+            <button class="flavor-card" type="button" data-value="collagen">
+              <img src="./assets/ad-collagen.webp" alt="胶原蛋白AD钙奶" />
+              <strong>胶原蛋白</strong>
+              <small>闪亮出场buff</small>
+            </button>
+          </div>
+          <button class="primary-btn is-disabled" type="button" data-next disabled>去收集快乐值</button>
+        </section>
+
+        <section class="screen game-screen" data-screen="4">
+          <div class="screen-head">
+            <p class="eyebrow">STEP 04</p>
+            <h2>点击泡泡，集满30点快乐值</h2>
+            <p>连击越高，快乐越炸；也可以摇一摇，把酸甜能量甩出来。</p>
+          </div>
+          <div class="game-stats">
+            <div class="joy-meter" aria-live="polite">
+              <div class="joy-meter-bar"><span id="joyBar"></span></div>
+              <strong><span id="joyScore">0</span>/30</strong>
+            </div>
+            <div class="combo-board">
+              <small id="timerText">10s</small>
+              <strong id="comboText">COMBO x0</strong>
+            </div>
+          </div>
+          <div class="game-area" id="gameArea">
+            <div class="game-hint">戳破 AD 泡泡</div>
+            <button class="game-start" id="gameStart" type="button">开始补给</button>
+          </div>
+          <button class="secondary-btn" id="shakeBoost" type="button">摇一摇/点一点：快乐+5</button>
+        </section>
+
+        <section class="screen result-screen" data-screen="5">
+          <div class="screen-head compact">
+            <p class="eyebrow">MY AD CARD</p>
+            <h2>你的快乐人格已生成</h2>
+          </div>
+          <article class="result-card" id="resultCard">
+            <div class="card-ribbon">不管几岁 快乐万岁</div>
+            <div class="result-main">
+              <img id="resultBottle" src="./assets/ad-original.webp" alt="我的AD钙奶口味" />
+              <div>
+                <p class="mini-label">你的AD快乐人格</p>
+                <h3 id="personaTitle">童心补给员</h3>
+                <p id="personaDesc">一口酸甜，立刻把今天调回可爱频道。</p>
+              </div>
+            </div>
+            <div class="formula">
+              <span id="roleTag">童心</span>
+              <span>+</span>
+              <span id="moodTag">酸甜</span>
+              <span>+</span>
+              <span id="flavorTag">原味AD</span>
+            </div>
+            <div class="badge-row">
+              <span>30周年限定</span>
+              <span>快乐值满格</span>
+              <span>可分享</span>
+            </div>
+            <p class="share-line" id="shareLine">我在娃哈哈AD钙奶快乐补给站，领到了今日份快乐。</p>
+          </article>
+          <div class="result-actions">
+            <button class="primary-btn" id="shareBtn" type="button">分享我的快乐卡</button>
+            <button class="secondary-btn" id="restartBtn" type="button">再测一次</button>
+          </div>
+          <p class="submit-tip">发布后将链接生成二维码，即可用于Da线上互动广告提交。</p>
+        </section>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./script.js"></script>
+  </body>
+</html>
