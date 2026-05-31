@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#07070a" />
+    <title>看见·时间的实验室｜HBN H5互动</title>
+    <link rel="preload" as="image" href="./assets/HBN原白水.png" />
+    <link rel="preload" as="image" href="./assets/HBN原白乳.png" />
+    <link rel="preload" as="image" href="./assets/HBN眼霜.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <noscript>需要启用 JavaScript 才能体验该 H5。</noscript>
+
+    <div id="app" class="app" aria-live="polite">
+      <header class="topbar" role="banner">
+        <div class="brand">
+          <span class="brand__dot" aria-hidden="true"></span>
+          <span class="brand__text">HBN 时间实验室</span>
+        </div>
+        <button id="btnSound" class="icon-btn" type="button" aria-label="声音：开/关" title="声音：开/关">
+          <span class="icon" aria-hidden="true">🔈</span>
+        </button>
+      </header>
+
+      <main id="stage" class="stage" role="main">
+        <!-- 0 preload -->
+        <section class="screen screen--active" data-screen="preload">
+          <div class="center">
+            <div class="loader">
+              <div class="loader__bar" id="preloadBar" style="--p: 0%"></div>
+            </div>
+            <p class="muted">正在连接 HBN 时间实验室…</p>
+          </div>
+        </section>
+
+        <!-- 1 cover -->
+        <section class="screen" data-screen="cover">
+          <div class="center">
+            <div class="hourglass" aria-hidden="true">
+              <div class="hourglass__glass"></div>
+              <div class="hourglass__sand"></div>
+            </div>
+            <h1 class="title">你愿意用多少时间，去看见一次真实的改变？</h1>
+            <p class="subtitle">真实的改变，从来不怕被看见。</p>
+            <button class="btn btn--primary" data-action="start">开始实验</button>
+            <p class="fineprint">建议佩戴耳机，体验更沉浸</p>
+          </div>
+        </section>
+
+        <!-- 2 identity -->
+        <section class="screen" data-screen="identity">
+          <div class="card">
+            <h2 class="h2">欢迎加入</h2>
+            <p class="muted">你是今天的「一日功效研究员」。完成 2 组慢实验，生成你的「功效看见报告」。</p>
+            <label class="field">
+              <span class="field__label">昵称（可选）</span>
+              <input id="nickInput" class="field__input" inputmode="text" maxlength="10" placeholder="研究员 001" />
+            </label>
+            <div class="row">
+              <button class="btn" data-action="skipNick">跳过</button>
+              <button class="btn btn--primary" data-action="confirmNick">进入实验台</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3 goal -->
+        <section class="screen" data-screen="goal">
+          <div class="stack">
+            <h2 class="h2">这次，你最想「看见」哪种改变？</h2>
+            <div class="grid" role="radiogroup" aria-label="实验目标">
+              <button class="choice" type="button" data-goal="brightening" role="radio" aria-checked="false">
+                <span class="choice__title">提亮去黄</span>
+                <span class="choice__meta">原白水乳 / 精华路径</span>
+              </button>
+              <button class="choice" type="button" data-goal="acneMarks" role="radio" aria-checked="false">
+                <span class="choice__title">淡化痘印</span>
+                <span class="choice__meta">原白水乳 / 精华路径</span>
+              </button>
+              <button class="choice" type="button" data-goal="darkCircles" role="radio" aria-checked="false">
+                <span class="choice__title">淡化黑眼圈</span>
+                <span class="choice__meta">咖啡因眼霜路径</span>
+              </button>
+              <button class="choice" type="button" data-goal="wrinkles" role="radio" aria-checked="false">
+                <span class="choice__title">紧致淡纹</span>
+                <span class="choice__meta">咖啡因眼霜路径</span>
+              </button>
+            </div>
+            <button id="btnGoalConfirm" class="btn btn--primary" data-action="confirmGoal" disabled>确定目标，开始验证</button>
+            <p class="fineprint">不同目标将匹配不同实验与报告结论</p>
+          </div>
+        </section>
+
+        <!-- 4 lab overview -->
+        <section class="screen" data-screen="lab">
+          <div class="stack">
+            <h2 class="h2">慢实验不是等待，是验证。</h2>
+            <p class="muted">每一次长按、拖拽，都是一次「看见」的开始。</p>
+            <div class="lab-cards">
+              <div class="lab-card">
+                <div class="lab-card__tag">实验 1</div>
+                <div class="lab-card__title" id="labExp1Title">黑色素抑制验证</div>
+                <div class="lab-card__meta" id="labExp1Meta">长按稳定反应 · 看见变淡</div>
+              </div>
+              <div class="lab-card">
+                <div class="lab-card__tag">实验 2</div>
+                <div class="lab-card__title" id="labExp2Title">眼周变化验证</div>
+                <div class="lab-card__meta" id="labExp2Meta">拖拽投放成分 · 看见焕亮</div>
+              </div>
+            </div>
+            <button class="btn btn--primary" data-action="goExp1">开始实验 1</button>
+          </div>
+        </section>
+
+        <!-- 5 experiment 1 -->
+        <section class="screen" data-screen="exp1">
+          <div class="stack">
+            <h2 class="h2" id="exp1Title">实验 1</h2>
+            <p class="muted" id="exp1Hint"></p>
+
+            <!-- Variant A: whitening (hold) -->
+            <div id="exp1Whitening" class="variant">
+              <div class="microscope">
+                <div class="microscope__ring" aria-hidden="true"></div>
+                <div id="cell" class="cell" aria-label="黑色素细胞"></div>
+                <div class="progress" aria-hidden="true">
+                  <div id="holdBar" class="progress__bar" style="--p: 0%"></div>
+                </div>
+                <button id="molecule" class="molecule" type="button" aria-label="α-熊果苷分子（长按）">
+                  <span class="molecule__inner">α</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Variant B: eye (time scrub) -->
+            <div id="exp1Eye" class="variant">
+              <div class="nightlab">
+                <div class="nightlab__panel">
+                  <div id="nightEye" class="night-eye" aria-label="通宵眼周变化模拟">
+                    <div id="nightDark" class="night-eye__dark" aria-hidden="true"></div>
+                    <div id="nightWrinkle" class="night-eye__wrinkle" aria-hidden="true"></div>
+                  </div>
+                </div>
+                <div class="nightlab__meta">
+                  <div class="pill" id="nightLabel">时间：0h</div>
+                  <div class="pill" id="nightTip">拖动时间轴，观察变化</div>
+                </div>
+                <input id="nightSlider" class="slider" type="range" min="0" max="12" step="1" value="0" aria-label="通宵时间轴（0-12小时）" />
+                <button class="btn btn--primary" data-action="nightConfirm">记录读数</button>
+              </div>
+            </div>
+
+            <button class="btn" data-action="exp1Skip">跳过互动（演示）</button>
+          </div>
+        </section>
+
+        <!-- 6 experiment 2 -->
+        <section class="screen" data-screen="exp2">
+          <div class="stack">
+            <h2 class="h2" id="exp2Title">实验 2</h2>
+            <p class="muted" id="exp2Hint"></p>
+
+            <!-- Variant A: whitening (compare slider) -->
+            <div id="exp2Whitening" class="variant">
+              <div class="whitelab">
+                <div class="compare" aria-label="提亮对比读数面板">
+                  <div id="comparePatch" class="compare__patch" style="--after: .10; --p: .10">
+                    <div class="compare__before" aria-hidden="true"></div>
+                    <div class="compare__after" aria-hidden="true"></div>
+                    <div class="compare__line" aria-hidden="true"></div>
+                    <div class="compare__label" id="compareLabel">对比：10%</div>
+                  </div>
+                </div>
+                <input id="compareSlider" class="slider" type="range" min="0" max="100" step="1" value="10" aria-label="对比进度滑杆" />
+                <button class="btn btn--primary" data-action="compareConfirm">确认读数</button>
+              </div>
+            </div>
+
+            <!-- Variant B: eye (drag) -->
+            <div id="exp2Eye" class="variant">
+              <div class="eye-lab">
+                <div id="eyeZone" class="eye-zone" aria-label="眼周区域（投放区）">
+                  <div class="eye-zone__glow" aria-hidden="true"></div>
+                  <div id="underEyeDark" class="under-eye under-eye--dark" aria-hidden="true"></div>
+                  <div id="underEyeWrinkle" class="under-eye under-eye--wrinkle" aria-hidden="true"></div>
+                  <div class="eye-zone__label">投放区</div>
+                </div>
+                <div class="chips">
+                  <div class="chip" data-chip="caffeine" tabindex="0" role="button" aria-label="咖啡因芯片（可拖拽）">咖啡因</div>
+                  <div class="chip" data-chip="k2" tabindex="0" role="button" aria-label="维生素 K2 芯片（可拖拽）">维生素K2</div>
+                </div>
+                <div class="drag-ghost" id="dragGhost" aria-hidden="true"></div>
+              </div>
+            </div>
+
+            <button class="btn" data-action="exp2Skip">跳过互动（演示）</button>
+          </div>
+        </section>
+
+        <!-- 7 emotion -->
+        <section class="screen" data-screen="emotion">
+          <div class="stack">
+            <h2 class="h2">看不见的那些年</h2>
+            <p class="quote">
+              在你看不见的地方，<br />
+              有人把时间，变成了证据。
+            </p>
+            <div class="timeline">
+              <div class="timeline__dot"></div>
+              <div class="timeline__line"></div>
+              <div class="timeline__dot"></div>
+            </div>
+            <div class="facts" id="brandFacts">
+              <div class="fact">6 年慢科研</div>
+              <div class="fact">6000+ 人次实测</div>
+              <div class="fact">50+ 篇 SCI 论文</div>
+              <div class="fact">多轮人体验证</div>
+            </div>
+            <p class="subtitle">慢一点，远一点。因为真实，值得更久。</p>
+            <button class="btn btn--primary" data-action="goReport">打开我的「看见报告」</button>
+          </div>
+        </section>
+
+        <!-- 8 generating -->
+        <section class="screen" data-screen="generating">
+          <div class="center">
+            <div class="printer" aria-hidden="true"></div>
+            <h2 class="h2">你的「看见报告」正在出炉</h2>
+            <p class="muted">正在生成你的功效看见报告…</p>
+            <div class="loader loader--thin">
+              <div class="loader__bar" id="genBar" style="--p: 0%"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 9 report -->
+        <section class="screen" data-screen="report">
+          <div class="stack">
+            <div class="report-card" id="reportCard" role="article" aria-label="功效看见报告">
+              <div class="report-card__top">
+                <div class="report-card__badge">功效看见报告</div>
+                <div class="report-card__id" id="reportId">研究员-000</div>
+              </div>
+              <div class="report-card__body">
+                <div class="report-row">
+                  <div class="report-k">本次路径</div>
+                  <div class="report-v" id="reportPath">—</div>
+                </div>
+                <div class="report-row">
+                  <div class="report-k">我想看见</div>
+                  <div class="report-v" id="reportGoal">—</div>
+                </div>
+                <div class="report-row">
+                  <div class="report-k">今日验证成分</div>
+                  <div class="report-v" id="reportActives">—</div>
+                </div>
+                <div class="report-row">
+                  <div class="report-k">可见数据</div>
+                  <div class="report-v" id="reportData">—</div>
+                </div>
+                <div class="report-quote" id="reportQuote">你的改变，被看见了。</div>
+              </div>
+              <div class="report-card__footer">
+                <div class="products" aria-hidden="true">
+                  <img id="prodWater" data-prod="whitening" src="./assets/HBN原白水.png" alt="" />
+                  <img id="prodMilk" data-prod="whitening" src="./assets/HBN原白乳.png" alt="" />
+                  <img id="prodEye" data-prod="eye" src="./assets/HBN眼霜.png" alt="" />
+                </div>
+                <div class="tagline" id="reportProductsLine">—</div>
+                <div class="tagline">真实的改变，从来不怕被看见。</div>
+              </div>
+            </div>
+
+            <div class="row">
+              <button class="btn btn--primary" data-action="savePoster">保存我的报告</button>
+              <button class="btn" data-action="share">分享给朋友测一测</button>
+            </div>
+            <button class="btn btn--ghost" data-action="restart">再做一次（换个目标）</button>
+            <p class="fineprint">提示：部分机型需允许“下载文件/保存图片”。</p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="bottombar" role="contentinfo">
+        <div class="progressline">
+          <div id="progressLineFill" class="progressline__fill" style="--p: 0%"></div>
+        </div>
+        <div class="bottombar__text" id="stepText">准备就绪</div>
+      </footer>
+    </div>
+
+    <dialog id="modal" class="modal">
+      <form method="dialog" class="modal__box">
+        <div class="modal__top">
+          <div class="modal__title" id="modalTitle">实验结果</div>
+          <button class="icon-btn" type="submit" aria-label="关闭" title="关闭">✕</button>
+        </div>
+        <div class="modal__body" id="modalBody"></div>
+        <div class="modal__actions">
+          <button class="btn btn--primary" type="submit">继续</button>
+        </div>
+      </form>
+    </dialog>
+
+    <canvas id="posterCanvas" class="sr-only" width="1080" height="1920" aria-hidden="true"></canvas>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
